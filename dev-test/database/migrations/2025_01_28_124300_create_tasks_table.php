@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
             $table->string('title');
             $table->string('description');
             $table->string('due_date');
-            $table->string('status');
+            $table->enum('status', ['pending', 'in_progress', 'completed']);
             $table->timestamps();
         });
     }

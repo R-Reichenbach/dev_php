@@ -1,29 +1,65 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class UserController extends Controller
 {
     public function register(Request $request)
-    {
-        // Validação
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+{
+    
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:contas_usuario',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
 
-        // Criação do usuário
+    try {
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Redirecionar com uma mensagem de sucesso
+        if (!$user) {
+            return redirect()->back()->with('error', 'Falha ao criar usuário.');
+        }
+
         return redirect()->back()->with('success', 'Usuário cadastrado com sucesso!');
+    } catch (\Exception $e) {
+
+        return redirect()->back()->with('error', 'Erro: ' . $e->getMessage());
     }
+}
+
+public function login(Request $request)
+{
+    // Validação das entradas
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string|min:8',
+    ]);
+
+    // Verificar se o usuário existe
+    $user = User::where('email', $request->email)->first();
+
+    // Verificar se a senha corresponde
+    if ($user && Hash::check($request->password, $user->password)) {
+        // Autenticar o usuário
+        auth()->login($user);
+        
+        if (auth()->check()) {
+            return redirect()->route('home')->with('success', 'Bem-vindo de volta!');
+        }
+    }
+
+    // Se falhar, retornar com erro
+    return back()->withErrors(['email' => 'Credenciais inválidas.']);
+}
+
+
 }
