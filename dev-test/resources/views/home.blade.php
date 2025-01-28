@@ -7,10 +7,10 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Create a Task</h2>
+    <div class="container">
+        <h2>Create a Task</h2>
 
-    <form action="/task" method="POST">
+    <form action="\task" method="POST">
         @csrf
         
         <div class="form-group">
