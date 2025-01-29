@@ -15,6 +15,13 @@
         </div>
     @endif
 
+    @if (auth()->check()) <!-- Verifica se o usuário está logado -->
+    <div class="greeting">
+        Olá, {{ auth()->user()->name }} <!-- Exibe o nome do usuário -->
+    </div>
+@endif
+
+
     @section('content')
     {{-- Widget do Clima --}}
     <div class="weather-widget">
