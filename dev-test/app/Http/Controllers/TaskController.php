@@ -13,7 +13,7 @@ class TaskController extends Controller
     }
     
 
-    public function task(Request $request)
+    public function store(Request $request)
     {
 
         $request->validate([
@@ -31,7 +31,6 @@ class TaskController extends Controller
             'userid' => auth()->user()->id,
 
         ]);
-        dd('Task created!');
         return redirect()->back()->with('success', 'Task created successfully!');
     }
 
@@ -42,6 +41,47 @@ class TaskController extends Controller
 
         // Retornando a view 'home' com as tarefas do usuário
         return view('tasks.index', compact('tasks'));
+    }
+    public function edit($id)
+    {
+        $task = Task::where('userid', auth()->id())
+                    ->where('id', $id)
+                    ->firstOrFail();
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+            'status' => 'required|string',
+        ]);
+
+        $task = Task::where('userid', auth()->id())
+                    ->where('id', $id)
+                    ->firstOrFail();
+
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $task = Task::where('userid', auth()->id())
+                    ->where('id', $id)
+                    ->firstOrFail();
+                    
+        $task->delete();
+
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully!');
     }
 
 }
