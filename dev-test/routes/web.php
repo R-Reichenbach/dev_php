@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 Route::get('register', function(){
     return view ('register');
-});
+})->name('login');
 
 Route::get('login', function() {
     return view('login');
@@ -27,6 +27,7 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/login'); // Altere para a página que deseja
 })->name('logout');
+
 
 // Rotas protegidas para tarefas
 Route::middleware(['auth'])->group(function () {

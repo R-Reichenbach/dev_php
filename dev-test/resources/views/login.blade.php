@@ -19,6 +19,19 @@
     </div>
 @endif
 
+@if (session('success'))
+    <div class="alert alert-success">
+        <script> alert("{{ session('success') }}")</script>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        <script> alert("{{ session('error') }}")</script>
+    </div>
+@endif
+
+
 
     <div class="container">
         
