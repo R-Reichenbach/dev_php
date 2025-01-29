@@ -26,10 +26,10 @@ class UserController extends Controller
         ]);
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Falha ao criar usuário.');
+            return redirect()->back()->with('error', 'Failed to create user');
         }
 
-        return redirect()->back()->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->back()->with('success', 'User successfully registered!');
     } catch (\Exception $e) {
 
         return redirect()->back()->with('error', 'Erro: ' . $e->getMessage());
