@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Services\WeatherService;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function __construct()
+    protected $weatherService;
+
+    public function __construct(WeatherService $weatherService)
     {
         $this->middleware('auth');
+        $this->weatherService = $weatherService;
     }
     
-
     public function store(Request $request)
     {
-
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -29,7 +31,6 @@ class TaskController extends Controller
             'due_date' => $request->due_date,
             'status' => $request->status,
             'userid' => auth()->user()->id,
-
         ]);
         return redirect()->back()->with('success', 'Task created successfully!');
     }
@@ -39,9 +40,16 @@ class TaskController extends Controller
         // Recuperando todas as tarefas do usuário logado
         $tasks = Task::where('userid', auth()->id())->get(); 
 
-        // Retornando a view 'home' com as tarefas do usuário
-        return view('tasks.index', compact('tasks'));
+        try {
+            $weather = $this->weatherService->getCurrentWeather('Birigui');
+        } catch (\Exception $e) {
+            $weather = null;
+        }
+
+        // Retornando a view com as tarefas e dados do clima
+        return view('tasks.index', compact('tasks', 'weather'));
     }
+
     public function edit($id)
     {
         $task = Task::where('userid', auth()->id())
@@ -83,6 +91,4 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully!');
     }
-
 }
-

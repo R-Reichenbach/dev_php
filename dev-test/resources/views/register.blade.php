@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Register</title>
 
+    <link rel="stylesheet"
+
 </head>
 <body>
         @if (session('success'))
@@ -21,7 +23,8 @@
     <div class="container">
         <h2>User Register</h2>
         <form action="/register" method="POST">
- 
+
+    <div class="form-group">
             @csrf
             <label for="name">Complete Name:</label>
             <input type="text" id="name" name="name" required placeholder="Enter your name" />
@@ -38,7 +41,7 @@
             <label for="password_confirmation">Confirm Password:</label>
             <input type="password" id="password_confirmation" name="password_confirmation" required minlength="8" placeholder="password_confirmation"/>
             <br>
-
+    </div>
             <button type="submit">Register</button>
         </form>
     </div>

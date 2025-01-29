@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task Management</title>
+        <link rel="stylesheet" href="{{url('css/app.css')}}">
         
     </head>
     <body>
@@ -13,6 +14,19 @@
             {{ session('success') }}
         </div>
     @endif
+
+    @section('content')
+    {{-- Widget do Clima --}}
+    <div class="weather-widget">
+        @if($weather)
+            <div class="weather-info">
+                <h4>Clima em {{ $weather['name'] }}</h4>
+                <p>Temperatura: {{ $weather['main']['temp'] }}°C</p>
+                <p>Condição: {{ $weather['weather'][0]['description'] }}</p>
+                <p>Umidade: {{ $weather['main']['humidity'] }}%</p>
+            </div>
+        @endif
+    </div>
             <h2>Create a Task</h2>
 
             <form action="{{ route('tasks.store') }}" method="POST">
