@@ -6,7 +6,7 @@ use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('register', function(){
@@ -20,6 +20,13 @@ Route::get('login', function() {
 // Rotas públicas
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login'); // Altere para a página que deseja
+})->name('logout');
 
 // Rotas protegidas para tarefas
 Route::middleware(['auth'])->group(function () {

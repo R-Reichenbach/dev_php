@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{url('css/styles.css')}}">
-    
+    <link rel="stylesheet" href="{{url('css/login.css')}}">
+
 </head>
 <body>
 @if ($errors->any())
@@ -18,11 +19,17 @@
     </div>
 @endif
 
+
     <div class="container">
         
     <div class="title">
         <h2>Login</h2>
     </div>
+
+    <div class="account">
+        <label>Don't have an account yet?</label>
+        <a href="{{url ('/register') }}">Register</a> 
+    </div>   
 
         <form class="form-group" action="/login" method="POST">
             @csrf

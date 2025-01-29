@@ -1,23 +1,29 @@
 .weather-widget {
     background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    font-size: 14px;
+    display: flex; /* Garante o alinhamento correto */
+    justify-content: flex-end; /* Alinha tudo para a direita */
 }
 
 .weather-info {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    width: 100%;
 }
 
 .weather-info h4 {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #333;
+    font-size: 16px;
 }
 
 .weather-info p {
     margin: 0;
     color: #666;
+    font-size: 12px;
 }
