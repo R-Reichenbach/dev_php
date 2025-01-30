@@ -5,15 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task Management</title>
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/tasks.css') }}">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ filemtime(public_path('css/app.css')) }}">
+        <link rel="stylesheet" href="{{ asset('css/tasks.css') }}?v={{ filemtime(public_path('css/tasks.css')) }}">
+
 
     </head>
     <body>
         <div class="container">
         @if(session('success'))
         
-            <script> alert("{{ session('success') }}")</script>
+            <script> alert("{{ session('success') }}")
+                location.reload();
+            </script>
         </div>
     @endif
 
@@ -126,9 +134,8 @@
                 <td>{{ $task->status }}</td>
                 <td class="actions">
                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
 
-                    
+                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">                 
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
