@@ -2,7 +2,7 @@
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.php80
+    pkgs.php81
     pkgs.composer
   ];
 }
