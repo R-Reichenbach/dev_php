@@ -27,11 +27,11 @@ body{
 .form-group {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Espaço entre os inputs */
+    width: 100%; 
 }
 
 .form-group input {
-    width: calc(100% - 20px); /* Mantém os inputs dentro da borda */
+    width: calc(100% - 20px); 
     padding: 12px;
     font-size: 16px;
     border: 2px solid #ddd;
@@ -56,29 +56,28 @@ body{
     font-weight: 300;
 }
 
-
 .button {
     display: flex;
     justify-content: flex-end;
 
     margin: auto;
-    background-color: #007bff; /* Azul vibrante */
-    color: #fff; /* Texto branco */
+    background-color: #007bff; 
+    color: #fff; 
     font-size: 16px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px; /* Cantos arredondados */
+    border-radius: 5px; 
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   }
   
   .button:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
-    transform: scale(1.05); /* Leve aumento no hover */
+    background-color: #0056b3; 
+    transform: scale(1.05); 
   }
   
   .button:active {
-    transform: scale(0.98); /* Efeito de clique */
+    transform: scale(0.98); 
   }
   

@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Task Management</title>
-        <link rel="stylesheet" href="{{url('css/app.css')}}">
-        <link rel="stylesheet" href="{{url('css/tasks.css')}}">
-        <script src="{{ asset('js/script.js') }}"></script>
-        
+
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/tasks.css') }}">
+
     </head>
     <body>
         <div class="container">
         @if(session('success'))
-        <div style="background-color: #d4edda; color: #155724; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
-            {{ session('success') }}
+        
+            <script> alert("{{ session('success') }}")</script>
         </div>
     @endif
 
@@ -47,6 +47,7 @@
                 <h2>Create a Task</h2>
             </div>
 
+
             <form action="{{ route('tasks.store') }}" method="POST">
                 @csrf
                 
@@ -76,6 +77,33 @@
 
                 <button class="button" type="submit" class="btn">Save Task</button>
             </form>
+            <div class="filters">
+    <form action="{{ route('tasks.index') }}" method="GET" class="filter-form">
+        <div class="filter-group">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="all">Todos</option>
+                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="due_date">Prazo:</label>
+            <select name="due_date" id="due_date">
+                <option value="">Todos os prazos</option>
+                <option value="today" {{ request('due_date') == 'today' ? 'selected' : '' }}>Hoje</option>
+                <option value="week" {{ request('due_date') == 'week' ? 'selected' : '' }}>Próxima semana</option>
+                <option value="month" {{ request('due_date') == 'month' ? 'selected' : '' }}>Próximo mês</option>
+                <option value="late" {{ request('due_date') == 'late' ? 'selected' : '' }}>Atrasadas</option>
+            </select>
+        </div>
+
+        <button type="submit" class="button">Filtrar</button>
+        <a href="{{ route('tasks.index') }}" class="btn btn-danger">Limpar Filtros</a>
+    </form>
+</div>
 
             <div class="tasks-container">
     <h2>Your Tasks</h2>
@@ -99,6 +127,8 @@
                 <td class="actions">
                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
+
+                    
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>

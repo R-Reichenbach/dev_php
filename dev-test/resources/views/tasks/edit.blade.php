@@ -3,28 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url('css/styles.css')}}">
+    <link rel="stylesheet" href="{{url('css/edit.css')}}">
     <title>Edit Task</title>
-    <style>
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; }
-        .form-group input, .form-group textarea, .form-group select { 
-            width: 100%; 
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-        .btn { 
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h2>Edit Task</h2>
+        <div class="title">
+            <h2>Edit Task</h2>
+        </div>
 
         <form action="{{ route('tasks.update', $task->id) }}" method="POST">
             @csrf

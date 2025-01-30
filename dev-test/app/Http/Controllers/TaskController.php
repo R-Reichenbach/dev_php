@@ -32,13 +32,38 @@ class TaskController extends Controller
             'status' => $request->status,
             'userid' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Task created successfully!');
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully!');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // Recuperando todas as tarefas do usuário logado
-        $tasks = Task::where('userid', auth()->id())->get(); 
+        // Query base
+        $query = Task::where('userid', auth()->id());
+
+        // Filtro por status
+        if ($request->has('status') && $request->status != 'all') {
+            $query->where('status', $request->status);
+        }
+
+        // Filtro por prazo
+        if ($request->has('due_date')) {
+            switch ($request->due_date) {
+                case 'today':
+                    $query->whereDate('due_date', today());
+                    break;
+                case 'week':
+                    $query->whereBetween('due_date', [now(), now()->addWeek()]);
+                    break;
+                case 'month':
+                    $query->whereBetween('due_date', [now(), now()->addMonth()]);
+                    break;
+                case 'late':
+                    $query->whereDate('due_date', '<', today());
+                    break;
+            }
+        }
+
+        $tasks = $query->orderBy('due_date', 'asc')->get();
 
         try {
             $weather = $this->weatherService->getCurrentWeather('Birigui');
@@ -46,7 +71,6 @@ class TaskController extends Controller
             $weather = null;
         }
 
-        // Retornando a view com as tarefas e dados do clima
         return view('tasks.index', compact('tasks', 'weather'));
     }
 
