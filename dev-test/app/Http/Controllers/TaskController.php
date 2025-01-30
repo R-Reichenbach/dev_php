@@ -37,7 +37,7 @@ class TaskController extends Controller
 
     public function index(Request $request)
     {
-        // Query base
+
         $query = Task::where('userid', auth()->id());
 
         // Filtro por status
@@ -45,7 +45,7 @@ class TaskController extends Controller
             $query->where('status', $request->status);
         }
 
-        // Filtro por prazo
+
         if ($request->has('due_date')) {
             switch ($request->due_date) {
                 case 'today':
