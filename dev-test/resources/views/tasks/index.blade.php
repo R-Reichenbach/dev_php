@@ -26,16 +26,16 @@
     @endif
 
     @if (auth()->check()) 
-    <div class="greeting">
-        Olá, {{ auth()->user()->name }}
-    </div>
-@endif
+        <div class="greeting">
+            Olá, {{ auth()->user()->name }}
+        </div>
+    @endif
 
 
-<form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-danger">Logout</button>
-</form>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
 
 
 
@@ -101,15 +101,15 @@
             <label for="due_date">Prazo:</label>
             <select name="due_date" id="due_date">
                 <option value="">Todos os prazos</option>
-                <option value="today" {{ request('due_date') == 'today' ? 'selected' : '' }}>Hoje</option>
-                <option value="week" {{ request('due_date') == 'week' ? 'selected' : '' }}>Próxima semana</option>
-                <option value="month" {{ request('due_date') == 'month' ? 'selected' : '' }}>Próximo mês</option>
-                <option value="late" {{ request('due_date') == 'late' ? 'selected' : '' }}>Atrasadas</option>
+                <option value="today" {{ request('due_date') == 'today' ? 'selected' : '' }}>Today</option>
+                <option value="week" {{ request('due_date') == 'week' ? 'selected' : '' }}>Next week</option>
+                <option value="month" {{ request('due_date') == 'month' ? 'selected' : '' }}>Next month</option>
+                <option value="late" {{ request('due_date') == 'late' ? 'selected' : '' }}>Late</option>
             </select>
         </div>
 
-        <button type="submit" class="button">Filtrar</button>
-        <a href="{{ route('tasks.index') }}" class="btn btn-danger">Limpar Filtros</a>
+        <button type="submit" class="button">Filter</button>
+        <a href="{{ route('tasks.index') }}" class="btn btn-danger">Clean filters</a>
     </form>
 </div>
 

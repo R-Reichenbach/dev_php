@@ -2,7 +2,7 @@
     margin: auto;
     background-color: #007bff; 
     color: #fff;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 10px 20px;
     border: none;
     border-radius: 5px; 
@@ -17,7 +17,8 @@
     padding: 18px;
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
+    max-width: 100%;
+    width: 100%;
     margin: auto;
     background-color: #f9f9f9;
     align-items: center;
@@ -25,31 +26,30 @@
 
 .form-group {
     margin-bottom: 15px;
-    max-width: 98%;
+    width: 100%;
     font-family: Arial, sans-serif;
 }
 
 .form-group label {
     display: block;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: bold;
     margin-bottom: 5px;
     color: #333;
 }
 
-
 .form-group input,
 .form-group textarea,
 .form-group select {
-    width: 100%; 
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 0.875rem;
     background-color: #f9f9f9;
     color: #333;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -66,4 +66,45 @@
 
 .form-group select {
     height: 35px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    .form-group label {
+        font-size: 0.875rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 0.8rem;
+    }
 }

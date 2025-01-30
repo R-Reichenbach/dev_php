@@ -4,10 +4,11 @@
     border-radius: 6px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
     font-size: 14px;
-    display: flex; /* Garante o alinhamento correto */
-    justify-content: flex-end; /* Alinha tudo para a direita */
+    display: flex;
+    justify-content: flex-end;
 }
 
 .weather-info {
@@ -19,11 +20,27 @@
 .weather-info h4 {
     margin-bottom: 5px;
     color: #333;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .weather-info p {
     margin: 0;
     color: #666;
-    font-size: 12px;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+    .weather-widget {
+        padding: 8px;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .weather-info h4 {
+        font-size: 1.1rem;
+    }
+
+    .weather-info p {
+        font-size: 0.75rem;
+    }
 }

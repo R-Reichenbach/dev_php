@@ -9,27 +9,32 @@
 
 </head>
 <body>
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    @if ($errors->any())
+    
+        
+        @foreach ($errors->all() as $error)
+               <script> 
+               alert("{{ $error }}")
+               </script>
+        @endforeach
+        
+    @endif
 
-@if (session('success'))
-    <div class="alert alert-success">
-        <script> alert("{{ session('success') }}")</script>
-    </div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            <script> 
+            alert("{{ session('success') }}")
+            </script>
+        </div>
+    @endif
 
-@if (session('error'))
-    <div class="alert alert-danger">
-        <script> alert("{{ session('error') }}")</script>
-    </div>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            <script> 
+            alert("{{ session('error') }}")
+            </script>
+        </div>
+    @endif
 
 
 

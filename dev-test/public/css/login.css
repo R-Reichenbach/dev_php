@@ -1,13 +1,38 @@
-.account{
+.account {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 0.875rem;
     font-weight: 400;
     padding-bottom: 10px;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
-.account a{
+.account a {
     text-decoration: none;
     color: blue;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .account {
+        font-size: 0.875rem;
+        padding-bottom: 8px;
+    }
+
+    .account a {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .account {
+        font-size: 0.75rem;
+        padding-bottom: 6px;
+    }
+
+    .account a {
+        font-size: 0.75rem;
+    }
 }
