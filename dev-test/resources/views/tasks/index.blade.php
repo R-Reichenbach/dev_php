@@ -90,7 +90,7 @@
         <div class="filter-group">
             <label for="status">Status:</label>
             <select name="status" id="status">
-                <option value="all">Todos</option>
+                <option value="all">All</option>
                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                 <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
                 <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
@@ -98,13 +98,11 @@
         </div>
 
         <div class="filter-group">
-            <label for="due_date">Prazo:</label>
+            <label for="due_date">Deadlines:</label>
             <select name="due_date" id="due_date">
-                <option value="">Todos os prazos</option>
-                <option value="today" {{ request('due_date') == 'today' ? 'selected' : '' }}>Today</option>
+                <option value="">All deadlines</option>
                 <option value="week" {{ request('due_date') == 'week' ? 'selected' : '' }}>Next week</option>
                 <option value="month" {{ request('due_date') == 'month' ? 'selected' : '' }}>Next month</option>
-                <option value="late" {{ request('due_date') == 'late' ? 'selected' : '' }}>Late</option>
             </select>
         </div>
 

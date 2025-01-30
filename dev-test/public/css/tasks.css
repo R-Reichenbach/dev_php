@@ -4,16 +4,17 @@ body {
     background: linear-gradient(to left, #002a44, #1a1a1a);
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
 .container {
     font-family: "Poppins", serif;
     border: 2px solid #006494;
-    padding: 18px;
+    padding: clamp(12px, 3vw, 18px);
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    max-width: 85%;
-    margin: auto;
+    width: min(95%, 85%);
+    margin: 1rem auto;
     background-color: #f9f9f9;
     align-items: center;
     box-sizing: border-box;
@@ -25,16 +26,18 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: 500;
+    font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .form-group input {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 12px;
     font-size: 16px;
     border: 2px solid #ddd;
@@ -126,56 +129,6 @@ select:focus {
     transform: scale(0.98);
 }
 
-.tasks-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-thead {
-    background: #006494;
-    color: white;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    font-weight: bold;
-}
-
-tbody tr:hover {
-    background: #f1f1f1;
-}
-
-.actions {
-    display: flex;
-    gap: 5px;
-}
-
 .btn {
     padding: 10px 10px;
     border: none;
@@ -206,125 +159,64 @@ tbody tr:hover {
     background: #c82333;
 }
 
-@media (max-width: 1024px) {
-    .container {
-        padding: 16px;
-        width: 80%;
-    }
+.tasks-container {
+    width: min(95%, 800px);
+    margin: 20px auto;
+    padding: clamp(10px, 3vw, 20px);
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .title h2 {
-        font-size: 1.2rem;
-    }
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
-    .form-group input, .form-group textarea, select {
-        font-size: 14px;
-    }
+table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
+td {
+    padding: clamp(8px, 2vw, 12px);
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    position: relative;
+}
 
-    .tasks-container {
-        padding: 10px;
-        width: 100%;
-    }
-
-    .table-wrapper {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    table {
-        width: 100%;
-        font-size: 14px;
-    }
+td:hover::after {
+    content: attr(data-fulltext);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: normal;
+    width: max-content;
+    max-width: 400px;
+    bottom: 100%;
+    left: 0;
+    transform: translateY(-5px);
+    z-index: 1000;
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 12px;
-        width: 90%;
-    }
-
-    .title h2 {
-        font-size: 1.1rem;
-    }
-
-    .form-group input, .form-group textarea, select {
-        font-size: 14px;
-    }
-
-    .button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
-    .tasks-container {
-        padding: 15px;
-        width: 100%;
-    }
-
-    .table-wrapper {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    th, td {
-        padding: 10px;
-    }
-
-    .form-group input, .form-group textarea, select {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+    td { font-size: 14px; }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 10px;
-        width: 100%;
-    }
-
-    .title h2 {
-        font-size: 1rem;
-    }
-
-    .form-group input, .form-group textarea, select {
-        font-size: 14px;
-        width: 100%;
-    }
-
-    .button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
-    .tasks-container {
-        padding: 10px;
-        width: 100%;
-    }
-
-    .table-wrapper {
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    table {
-        font-size: 12px;
-        width: 100%;
-    }
-
-    th, td {
-        padding: 8px;
-    }
-
-    textarea {
-        width: 100%;
-        min-height: 100px;
-    }
+    td { font-size: 12px; padding: 8px; }
 }
