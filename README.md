@@ -45,27 +45,47 @@ O sistema de teste é uma aplicação de gestão de tarefas (to-do list), onde o
     composer install
     ```
 
-4. Configure o arquivo `.env` com as informações do banco de dados (nome do banco, usuário, senha e porta).
+4. Crie o arquivo `.env` a partir do arquivo `example.env`:
 
-5. Execute o comando para instalar as dependências do NPM:
+    ```bash
+    cp .env.example .env
+    ```
+
+5. Configure o arquivo `.env` com as seguintes informações:
+   
+    **Configuração da API de clima:**
+    ```plaintext
+    OPENWEATHER_API_KEY=32aa1b291d91d367738a5f74ac32b973
+    ```
+
+    **Configuração do banco de dados:**
+    ```plaintext
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=dev_test
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+6. Execute o comando para instalar as dependências do NPM:
 
     ```bash
     npm install
     ```
 
-6. No XAMPP, inicie o **Apache** e o **MySQL**.
+7. No XAMPP, inicie o **Apache** e o **MySQL**.
 
-7. Crie um banco de dados no **phpMyAdmin** com as configurações definidas no `.env`.
+8. Crie um banco de dados no **phpMyAdmin** com o nome `dev_test` ou o que foi configurado no arquivo `.env`.
 
-8. Execute as migrações para criar as tabelas do banco de dados:
+9. Execute as migrações para criar as tabelas do banco de dados:
 
     ```bash
     php artisan migrate
     ```
 
-9. Agora, o sistema está pronto para ser executado.
+10. Agora, o sistema está pronto para ser executado.
 
 ### Como utilizar
 - Acesse a aplicação via navegador e faça o login ou o registro de um novo usuário.
 - Após o login, você será redirecionado para a página onde pode gerenciar suas tarefas.
-
