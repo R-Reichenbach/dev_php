@@ -47,17 +47,17 @@
             <input type="text" name="city" placeholder="Digite o nome da cidade" value="{{ request('city', 'Birigui') }}">
             </div>
 
-        <button class="btn-weather" type="submit">Buscar Clima</button>
+        <button class="btn-weather" type="submit">Search for weather</button>
     </form>
 
     {{-- Widget do Clima --}}
     <div class="weather-widget">
         @if($weather)
             <div class="weather-info">
-                <h4>Clima em {{ $weather['name'] }}</h4>
-                <p>Temperatura: {{ $weather['main']['temp'] }}°C</p>
-                <p>Condição: {{ $weather['weather'][0]['description'] }}</p>
-                <p>Umidade: {{ $weather['main']['humidity'] }}%</p>
+                <h4>Climate in {{ $weather['name'] }}</h4>
+                <p>Temperature: {{ $weather['main']['temp'] }}°C</p>
+                <p>Condition: {{ $weather['weather'][0]['description'] }}</p>
+                <p>Humidity: {{ $weather['main']['humidity'] }}%</p>
             </div>
         @endif
     </div>
