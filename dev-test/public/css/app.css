@@ -17,6 +17,41 @@
     width: 100%;
 }
 
+.input-weather{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-weather input{
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+.input-weather input:focus {
+    border-color: #247ba0;
+    box-shadow: 0 0 8px rgba(36, 123, 160, 0.5);
+}
+
+.btn-weather{
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    background-color: #006494;
+    margin-bottom: 5px;
+}
+
 .weather-info h4 {
     margin-bottom: 5px;
     color: #333;

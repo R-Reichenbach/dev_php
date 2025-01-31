@@ -65,13 +65,15 @@ class TaskController extends Controller
 
         $tasks = $query->orderBy('due_date', 'asc')->get();
 
-        try {
-            $weather = $this->weatherService->getCurrentWeather('Birigui');
-        } catch (\Exception $e) {
-            $weather = null;
-        }
+        $city = $request->input('city', 'Birigui'); 
 
-        return view('tasks.index', compact('tasks', 'weather'));
+    try {
+        $weather = $this->weatherService->getCurrentWeather($city);
+    } catch (\Exception $e) {
+        $weather = null;
+    }
+
+    return view('tasks.index', compact('tasks', 'weather'));
     }
 
     public function edit($id)

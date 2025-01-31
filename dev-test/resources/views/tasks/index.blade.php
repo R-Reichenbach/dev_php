@@ -40,6 +40,16 @@
 
 
     @section('content')
+    {{-- Formulário de Busca de Clima --}}
+    <form action="{{ route('tasks.store') }}" method="GET">
+            <div class="input-weather">
+                <label for="title">Enter the desired city:</label>
+            <input type="text" name="city" placeholder="Digite o nome da cidade" value="{{ request('city', 'Birigui') }}">
+            </div>
+
+        <button class="btn-weather" type="submit">Buscar Clima</button>
+    </form>
+
     {{-- Widget do Clima --}}
     <div class="weather-widget">
         @if($weather)
