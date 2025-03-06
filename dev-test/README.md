@@ -1,4 +1,4 @@
-# Teste Desenvolvedor PHP
+# Projeto PHP
 
 ## Descrição
 O sistema de teste é uma aplicação de gestão de tarefas (to-do list), onde os usuários podem realizar o registro e login para acessar suas tarefas. A aplicação permite ao usuário listar, adicionar, editar e deletar suas tarefas. Além disso, a previsão do tempo de Birigui é integrada via API para fornecer informações úteis aos usuários em tempo real.
